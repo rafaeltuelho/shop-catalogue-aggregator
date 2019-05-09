@@ -1,4 +1,4 @@
-package com.redhat.fuse.boosters.rest.http;
+package io.github.microservices.demo.service;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;

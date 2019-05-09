@@ -1,4 +1,4 @@
-package com.redhat.fuse.boosters.rest.http;
+package io.github.microservices.demo.service;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.processor.aggregate.AggregationStrategy;

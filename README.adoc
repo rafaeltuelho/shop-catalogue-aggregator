@@ -1,8 +1,6 @@
-= Camel Aggregation
+= Shop products catalogue api aggregator
 
-The booster demonstrates how to aggregate JSON data from 2 services using Camel. 
-
-Use this booster to:
+The service demonstrates how to aggregate JSON data from 2 services using Apache Camel. 
 
 * Execute an HTTP GET request on the `camel/catalogue` endpoint to retrieve a list of flights (arrivals and departures). Arrivals and Departures are aggregated from 2 separate services. See `CamelRouter.java` for how these 2 services are aggregated.
 These services are configured to be local service beans by default. However, you can change the camel routing to fetch data from 2 mock servers (included in this booster).

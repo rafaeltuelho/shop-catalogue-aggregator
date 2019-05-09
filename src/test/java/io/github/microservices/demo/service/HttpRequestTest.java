@@ -1,4 +1,4 @@
-package com.redhat.fuse.boosters.rest.http;
+package io.github.microservices.demo.service;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -14,7 +14,7 @@
  * permissions and limitations under the License.
  */
 
-package com.redhat.fuse.boosters.rest.http;
+package io.github.microservices.demo.service;
 
 import io.fabric8.kubernetes.api.model.v4_0.HasMetadata;
 import io.fabric8.openshift.clnt.v4_0.OpenShiftClient;
