@@ -2,5 +2,5 @@ package com.redhat.fuse.boosters.rest.http;
 
 import java.util.List;
 
-public interface FlightsList extends List<Flight> {
+public interface ProductsList extends List<Product> {
 }

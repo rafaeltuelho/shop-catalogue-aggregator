@@ -1,12 +1,10 @@
-:launchURL: https://developers.redhat.com/launch
-
-= Fuse Aggregation
+= Camel Aggregation
 
 The booster demonstrates how to aggregate JSON data from 2 services using Camel. 
 
 Use this booster to:
 
-* Execute an HTTP GET request on the `camel/flights` endpoint to retrieve a list of flights (arrivals and departures). Arrivals and Departures are aggregated from 2 separate services. See `CamelRouter.java` for how these 2 services are aggregated.
+* Execute an HTTP GET request on the `camel/catalogue` endpoint to retrieve a list of flights (arrivals and departures). Arrivals and Departures are aggregated from 2 separate services. See `CamelRouter.java` for how these 2 services are aggregated.
 These services are configured to be local service beans by default. However, you can change the camel routing to fetch data from 2 mock servers (included in this booster).
 
 * Browse the API's Swagger page.
