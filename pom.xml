@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.microservices.demo</groupId>
-  <artifactId>shop-catalogue-api-aggregation</artifactId>
+  <artifactId>shop-catalogue-api-aggregator</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Shop products catalogue api aggregator</name>
   <properties>
@@ -10,6 +10,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <spring-boot.version>1.5.13.RELEASE</spring-boot.version>
     <camel.version>2.21.2</camel.version>
+    <jaeger.version>0.31.0</jaeger.version>
     <!-- versions of Maven plugins -->
     <fmp.version>3.5.40</fmp.version>
     <!-- version of Arquillian -->
@@ -92,6 +93,17 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-opentracing-starter</artifactId>
+    </dependency>    
+
+    <dependency>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-client</artifactId>
+      <version>${jaeger.version}</version>
+    </dependency>
+
     <!-- Test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

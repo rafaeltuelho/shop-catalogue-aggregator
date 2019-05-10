@@ -4,6 +4,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.apache.camel.model.rest.RestParamType;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.List;
 @Component
 public class CamelRouter extends RouteBuilder {
 
+    @Value("${SOCKS_CATALOGUE_HOST}")
+    private String socksCatalogueHost;
+    @Value("${SHOES_CATALOGUE_HOST}")
+    private String shoesCatalogueHost;
 
     @Override
     public void configure() throws Exception {
-        String socksCatalogueHost = "localhost:8080"; //System.getenv("SOCKS_CATALOGUE_HOST");
-        String shoesCatalogueHost = "localhost:8082"; //System.getenv("SHOES_CATALOGUE_HOST");
         
         if (socksCatalogueHost == null || socksCatalogueHost.isEmpty()) {
             throw new Exception("SOCKS_CATALOGUE_HOST env var not set");
