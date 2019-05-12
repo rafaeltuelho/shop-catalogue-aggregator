@@ -1,10 +1,13 @@
 package io.github.microservices.demo.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Tag
  */
 public class Tag {
 
+    @JsonIgnore
     private Long id;
     private String name;
 

@@ -3,8 +3,6 @@ package io.github.microservices.demo.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Shoe extends Product {
   
   private String imageUrl1;
