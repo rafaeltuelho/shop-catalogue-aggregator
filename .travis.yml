@@ -10,12 +10,13 @@ cache:
   - $HOME/.m2
 
 before_script:
-- echo JAVA_HOME = $JAVA_HOME
-- ls $JAVA_HOME/bin
+  - echo JAVA_HOME = $JAVA_HOME
+  - ls $JAVA_HOME/bin
 
 install: true
 script:
-- ./mvnw clean package fabric8:build -DskipTests -Dfabric8.generator.name="${REGISTRY_USER_NAMESPACE}/%a"
-- docker images
-- echo "$REGISTRY_AUTH_PASSWORD" | docker login -u "$REGISTRY_AUTH_USER" --password-stdin ${REGISTRY_SERVER}
-- ./mvnw fabric8:push -Ddocker.push.registry=${REGISTRY_SERVER} -Ddocker.image="${REGISTRY_USER_NAMESPACE}/%a"
+  - ./mvnw clean package fabric8:build -DskipTests -Dfabric8.generator.name="${REGISTRY_USER_NAMESPACE}/%a"
+  - docker tag ${TRAVIS_REPO_SLUG} ${REGISTRY_SERVER}/${TRAVIS_REPO_SLUG}
+  - docker images
+  - echo "$REGISTRY_AUTH_PASSWORD" | docker login -u "$REGISTRY_AUTH_USER" --password-stdin ${REGISTRY_SERVER}
+  - docker push ${REGISTRY_SERVER}/${TRAVIS_REPO_SLUG}
