@@ -1,0 +1,20 @@
+language: java
+jdk: openjdk8
+dist: trusty
+
+services:
+  - docker
+
+cache:
+  directories:
+  - $HOME/.m2
+
+before_script:
+- echo JAVA_HOME = $JAVA_HOME
+- ls $JAVA_HOME/bin
+
+script:
+- ./mvnw clean package fabric8:build -DskipTests -Dfabric8.generator.name="${REGISTRY_USER_NAMESPACE}/%a"
+- docker images
+- echo "$REGISTRY_AUTH_PASSWORD" | docker login -u "$REGISTRY_AUTH_USER" --password-stdin ${REGISTRY_SERVER}
+- ./mvnw clean package fabric8:push -DskipTests -Ddocker.push.registry=${REGISTRY_SERVER}
