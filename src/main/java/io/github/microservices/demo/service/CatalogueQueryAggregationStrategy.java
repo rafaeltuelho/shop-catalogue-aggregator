@@ -1,10 +1,10 @@
 package io.github.microservices.demo.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CatalogueQueryAggregationStrategy implements AggregationStrategy {
 
@@ -19,19 +19,26 @@ public class CatalogueQueryAggregationStrategy implements AggregationStrategy {
       int shoeResponseCode = Integer.valueOf(ex2.getIn().getHeader(Exchange.HTTP_RESPONSE_CODE, String.class));
 
       // when both backend catalogue services return nothing...
-      if (sockResponseCode1 >= 400 && shoeResponseCode >= 400){
-        String errorResponse = "{ \"error\": "+
-            "\"not able to query catalogue backends: " +
-            "Socks catalogue backend returned HTTP " +
-             sockResponseCode1 +
-            "; Shoes catalogue backend returned HTTP " +
-             shoeResponseCode + "\", " +
-             "\"status_code\": 500, " +
-             "\"status_check\": \"Internal Server Error\" }";
+      if (sockResponseCode1 >= 400 && shoeResponseCode >= 400) {
+
+        CatalogueErrorResponse errorResponse = new CatalogueErrorResponse();
+        errorResponse.setErrorMsg("not able to query catalogue backends: " + 
+            "Socks catalogue backend returned HTTP " + sockResponseCode1 + 
+            "; Shoes catalogue backend returned HTTP " + shoeResponseCode);
+        errorResponse.setStatusCode(500);
+        errorResponse.setStatusMsg("Internal Server Error");
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "{ }";
+        try {
+          jsonString = mapper.writeValueAsString(errorResponse);
+        } catch (JsonProcessingException e) {
+          e.printStackTrace();
+        }
 
         ex1.getIn().setHeader(Exchange.CONTENT_TYPE, "application/json");
         ex1.getIn().setHeader(Exchange.HTTP_RESPONSE_CODE, 404);
-        ex1.getIn().setBody(errorResponse);
+        ex1.getIn().setBody(jsonString);
         
         return ex1;
       }

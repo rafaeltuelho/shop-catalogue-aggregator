@@ -15,7 +15,7 @@ before_script:
 
 install: true
 script:
-  - ./mvnw clean package fabric8:build -DskipTests -Dfabric8.generator.name="${REGISTRY_USER_NAMESPACE}/%a"
+  - ./mvnw clean package fabric8:build -DskipTests -Dfabric8.generator.name="${REGISTRY_USER_NAMESPACE}/%a" -Dfabric8.generator.from="fabric8/java-centos-openjdk8-jdk"
   - docker tag ${TRAVIS_REPO_SLUG} ${REGISTRY_SERVER}/${TRAVIS_REPO_SLUG}
   - docker images
   - echo "$REGISTRY_AUTH_PASSWORD" | docker login -u "$REGISTRY_AUTH_USER" --password-stdin ${REGISTRY_SERVER}

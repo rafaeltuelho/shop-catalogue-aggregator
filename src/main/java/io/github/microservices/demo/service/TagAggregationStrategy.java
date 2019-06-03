@@ -3,9 +3,6 @@ package io.github.microservices.demo.service;
 import org.apache.camel.Exchange;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TagAggregationStrategy implements AggregationStrategy {
 
   @Override
